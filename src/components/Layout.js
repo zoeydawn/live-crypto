@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Layout extends Component {
+const Layout = () => (
+  <div>
+    <h1>Redux Express</h1>
+  </div>
+);
 
-  render() {
-    return (
-      <div className="container">
-        <h1>Redux Express</h1>
-      </div>
-    );
-  }
-}
+export default Layout;
