@@ -5,7 +5,7 @@ import promiseMiddleware from 'redux-promise-middleware';
 
 import reducer from './reducers';
 
-let middleware = [
+const middleware = [
   thunkMiddleware,
   promiseMiddleware(),
   // ...
