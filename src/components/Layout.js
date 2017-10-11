@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { subscribeToBfx } from '../actions';
 
 import OrderBook from './OrderBook';
+import Trades from './Trades';
 
 class Layout extends Component {
   componentDidMount() {
@@ -12,10 +13,11 @@ class Layout extends Component {
 
   render() {
     const { orderBook, trades } = this.props;
-    console.log('trades:', trades);
+
     return (
       <div className="layout">
         <OrderBook orderBook={orderBook} />
+        <Trades trades={trades} />
       </div>
     );
   }

@@ -7,7 +7,7 @@ export default function trades(state = [], action) {
     case 'INITIAL_TRADES':
       return action.payload;
     case 'ADD_TRADE':
-      return [...state, action.payload];
+      return [action.payload, ...state];
     default:
       return state;
   }
