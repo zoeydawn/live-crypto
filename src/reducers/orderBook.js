@@ -5,7 +5,6 @@ export default function orderBook(state = [], action) {
 
   switch (action.type) {
     case 'ADD_ORDER': {
-      console.log('action.payload[0]:', action.payload[0]);
       const filteredState = state.filter(order => (
         order[0] !== action.payload[0]
       ));
