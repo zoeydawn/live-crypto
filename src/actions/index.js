@@ -5,12 +5,12 @@ const messages = {
   ticker: {
     event: 'subscribe',
     channel: 'ticker',
-    symbol: 'tETHBTC',
+    symbol: 'tBTCUSD',
   },
   book: {
     event: 'subscribe',
     channel: 'book',
-    symbol: 'tETHBTC',
+    symbol: 'tBTCUSD',
     prec: 'P2',
     freq: 'F1',
     len: 25,
@@ -18,9 +18,16 @@ const messages = {
   trades: {
     event: 'subscribe',
     channel: 'trades',
-    symbol: 'tETHBTC',
+    symbol: 'tBTCUSD',
   },
 };
+
+function addToOrderBook(data) {
+  return {
+    type: 'ADD_ORDER',
+    payload: data,
+  }
+}
 
 export function subscribeToBfx() {
   return (dispatch) => {
@@ -34,17 +41,47 @@ export function subscribeToBfx() {
 
     socket.onmessage = (msg) => {
       const data = JSON.parse(msg.data);
-      console.log('msg:', msg);
-      switch (data.event) {
-        case 'info':
-          console.log('info');
-          break;
-        case 'subscribed':
-          console.log('subscribed');
-          break;
-        default:
-          console.log('data:', data);
+      // console.log('data:', data);
+      if (Array.isArray(data)) {
+        // console.log('data', data);
+        const dataArr = data[1];
+        switch (dataArr.length) {
+          case 10:
+            // console.log('ticker', data);
+            break;
+          case 50:
+            // console.log('book', data);
+            dataArr.forEach((arr) => {
+              dispatch(addToOrderBook(arr));
+            });
+            break;
+          case 3:
+            // console.log('book', data);
+            dispatch(addToOrderBook(dataArr))
+            break;
+          case 30:
+            // console.log('trades', data);
+            break;
+          default:
+            if (data[2] && data[2].length === 4) {
+              // console.log('trades', data);
+            } else {
+              // console.log('nada:', data);
+            }
+
+        }
       }
+      // switch (data.event) {
+      //   case 'info':
+      //     // console.log('info');
+      //     break;
+      //   // case 'subscribed':
+      //   //   console.log('subscribed');
+      //   //   console.log('data.channel:', data.channel);
+      //   //   break;
+      //   default:
+      //     // console.log('data.event:', data.event);
+      // }
     };
     socket.onclose = () => {
       console.log('disconnected from Bitfinex');

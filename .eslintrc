@@ -5,5 +5,7 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "no-console": 0,
     "no-underscore-dangle": 0,
+    "class-methods-use-this": "off",
+    "react/forbid-prop-types": "off"
   }
 }

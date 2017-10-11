@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-const sampleReducer = (state = 0) => state;
+import orderBook from './orderBook';
 
 export default combineReducers({
-  zero: sampleReducer,
+  orderBook,
 });

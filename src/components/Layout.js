@@ -3,15 +3,19 @@ import { connect } from 'react-redux';
 
 import { subscribeToBfx } from '../actions';
 
+import OrderBook from './OrderBook';
+
 class Layout extends Component {
   componentDidMount() {
     this.props.subscribeToBfx();
   }
 
   render() {
+    const { orderBook } = this.props;
+
     return (
-      <div>
-        <h1>Redux Express</h1>
+      <div className="layout">
+        <OrderBook orderBook={orderBook} />
       </div>
     );
   }
@@ -19,10 +23,11 @@ class Layout extends Component {
 
 Layout.propTypes = {
   subscribeToBfx: PropTypes.func.isRequired,
+  orderBook: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
-  zero: state.zero,
+  orderBook: state.orderBook,
 });
 
 const mapDispatchToProps = dispatch => ({
