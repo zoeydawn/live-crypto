@@ -4,8 +4,15 @@ export default function orderBook(state = [], action) {
   }
 
   switch (action.type) {
-    case 'ADD_ORDER':
-      return [...state, action.payload];
+    case 'ADD_ORDER': {
+      console.log('action.payload[0]:', action.payload[0]);
+      const filteredState = state.filter(order => (
+        order[0] !== action.payload[0]
+      ));
+      return [...filteredState, action.payload];
+    }
+    case 'INITIAL_ORDERS':
+      return action.payload;
     default:
       return state;
   }

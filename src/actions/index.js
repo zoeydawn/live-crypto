@@ -11,8 +11,7 @@ const messages = {
     event: 'subscribe',
     channel: 'book',
     symbol: 'tBTCUSD',
-    prec: 'P2',
-    freq: 'F1',
+    prec: 'P1',
     len: 25,
   },
   trades: {
@@ -25,6 +24,13 @@ const messages = {
 function addToOrderBook(data) {
   return {
     type: 'ADD_ORDER',
+    payload: data,
+  }
+}
+
+function gotInitialOrders(data) {
+  return {
+    type: 'INITIAL_ORDERS',
     payload: data,
   }
 }
@@ -51,9 +57,10 @@ export function subscribeToBfx() {
             break;
           case 50:
             // console.log('book', data);
-            dataArr.forEach((arr) => {
-              dispatch(addToOrderBook(arr));
-            });
+            // dataArr.forEach((arr) => {
+            //   dispatch(addToOrderBook(arr));
+            // });
+            dispatch(gotInitialOrders(dataArr));
             break;
           case 3:
             // console.log('book', data);
