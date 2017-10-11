@@ -8,6 +8,7 @@
   height: 100%;
   padding: 50px 10px;
   display: flex;
+  background-color: rgb(27, 38, 45);
 }
 
 .trades {
@@ -50,6 +51,14 @@
 
 .trade-cell {
   width: 33%;
+}
+
+.sell {
+  background-color: rgba(157, 194, 74, 0.05);
+}
+
+.buy {
+  background-color: rgba(225, 86, 86, 0.05);
 }
 
 .row {

@@ -12,10 +12,10 @@ const Trades = ({ trades }) => {
       </div>
       {
         trades.map((trade, i) => (
-          <div className="row" key={`trades-${i}`}>
+          <div className={`row ${trade[2] > 0 ? 'sell' : 'buy'}`} key={`trades-${i}`}>
             <div className="trade-cell">{moment(trade[1]).format('h:mm:ss')}</div>
             <div className="trade-cell">{trade[3]}</div>
-            <div className="trade-cell right-floated">{trade[2]}</div>
+            <div className="trade-cell right-floated">{Math.abs(trade[2])}</div>
           </div>
         ))
       }
