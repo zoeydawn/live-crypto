@@ -27,7 +27,7 @@ class Layout extends Component {
 
   render() {
     const { orderBook, trades, ticker } = this.props;
-    console.log('orderBook:', orderBook);
+
     return (
       <div className="layout">
         <div className="left-container">

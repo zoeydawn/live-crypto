@@ -64,16 +64,9 @@ function disconnected() {
   };
 }
 
-function connected() {
-  return {
-    type: 'CONNECTED',
-  };
-}
-
 function connect(dispatch) {
   socket = new WebSocket('wss://api.bitfinex.com/ws/2');
   socket.onopen = () => {
-    console.log('in onopen');
     socket.send(JSON.stringify(messages.ticker));
     socket.send(JSON.stringify(messages.book));
     socket.send(JSON.stringify(messages.trades));
@@ -115,61 +108,15 @@ function connect(dispatch) {
 }
 
 export function subscribeToBfx() {
-  console.log('in subscribeToBfx');
   return (dispatch) => {
     connect(dispatch);
-    // dispatch(connected());
-    // console.log('in dispatch');
-    // socket = new WebSocket('wss://api.bitfinex.com/ws/2');
-    // socket.onopen = () => {
-    //   console.log('in onopen');
-    //   socket.send(JSON.stringify(messages.ticker));
-    //   socket.send(JSON.stringify(messages.book));
-    //   socket.send(JSON.stringify(messages.trades));
-    // };
-    //
-    // socket.onmessage = (msg) => {
-    //   const data = JSON.parse(msg.data);
-    //   if (Array.isArray(data)) {
-    //     const dataArr = data[1];
-    //     switch (dataArr.length) {
-    //       case 10:
-    //         dispatch(gotTickerData(dataArr));
-    //         break;
-    //       case 50:
-    //         dispatch(gotInitialOrders(dataArr));
-    //         break;
-    //       case 3:
-    //         dispatch(addToOrderBook(dataArr));
-    //         break;
-    //       case 30:
-    //         dispatch(gotInitialTrades(dataArr));
-    //         break;
-    //       default:
-    //         if (data[2] && data[2].length === 4) {
-    //           dispatch(addTrade(data[2]));
-    //         }
-    //
-    //     }
-    //   }
-    // };
-    // socket.onclose = () => {
-    //   console.log('disconnected from Bitfinex');
-    //   socket = null;
-    // };
-    //
-    // socket.onerror = (msg) => {
-    //   console.error(msg.message);
-    // };
   };
 }
 
 export function resubscribeToBfx() {
-  // socket = new WebSocket('wss://api.bitfinex.com/ws/2');
   return (dispatch) => {
     connect(dispatch);
-
-  }
+  };
 }
 
 export function unsubscribeToBfx() {
