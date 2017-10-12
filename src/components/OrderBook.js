@@ -27,8 +27,8 @@ export default class OrderBook extends Component {
       return (
         <div className="row" key={`asks-${i}`}>
           <div className="cell">{sortedArr[0]}</div>
-          <div className="cell center">{Math.round(sortedArr[2] * 10) / 10}</div>
-          <div className="cell right-floated">{Math.round(total * 10) / 10}</div>
+          <div className="cell center">{Math.round(Math.abs(total) * 10) / 10}</div>
+          <div className="cell right-floated">{Math.round(Math.abs(sortedArr[2]) * 10) / 10}</div>
           <div className="cell right-floated">{sortedArr[1]}</div>
         </div>
       );
