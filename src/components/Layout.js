@@ -5,6 +5,7 @@ import { subscribeToBfx } from '../actions';
 
 import OrderBook from './OrderBook';
 import Trades from './Trades';
+import Ticker from './Ticker';
 
 class Layout extends Component {
   componentDidMount() {
@@ -13,10 +14,13 @@ class Layout extends Component {
 
   render() {
     const { orderBook, trades, ticker } = this.props;
-    console.log('ticker:', ticker);
+
     return (
       <div className="layout">
-        <OrderBook orderBook={orderBook} />
+        <div className="left-container">
+          <Ticker ticker={ticker} />
+          <OrderBook orderBook={orderBook} />
+        </div>
         <Trades trades={trades} />
       </div>
     );
