@@ -9,9 +9,9 @@ export default class OrderBook extends Component {
       total += sortedArr[2];
       return (
         <div
-          className="row"
+          className="row left-row"
           key={`bids-${i}`}
-          style={{ background: `linear-gradient(to left, #77903e ${total / 2}%, rgb(27, 38, 45) 0%)` }}
+          style={{ background: `linear-gradient(to left, #77903e ${total / 2}%, rgba(157, 194, 74, 0.063) 0%)` }}
         >
           <div className="cell">{sortedArr[1]}</div>
           <div className="cell center">{Math.round(sortedArr[2] * 10) / 10}</div>
@@ -30,7 +30,7 @@ export default class OrderBook extends Component {
       total += sortedArr[2];
       return (
         <div
-          className="row"
+          className="row right-row"
           key={`asks-${i}`}
           style={{ background: `linear-gradient(to right, #83332f ${Math.abs(total) / 2}%, rgb(27, 38, 45) 0%)` }}
         >
@@ -58,7 +58,7 @@ export default class OrderBook extends Component {
     return (
       <div className="order-book">
         <div className="bids">
-          <div className="row">
+          <div className="row left-row">
             <div className="cell">count</div>
             <div className="cell center">amount</div>
             <div className="cell right-floated">total</div>
@@ -67,7 +67,7 @@ export default class OrderBook extends Component {
           {this.renderBids(bids)}
         </div>
         <div className="asks">
-          <div className="row">
+          <div className="row right-row">
             <div className="cell">price</div>
             <div className="cell center">totol</div>
             <div className="cell right-floated">amount</div>
