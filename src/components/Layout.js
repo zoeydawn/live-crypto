@@ -12,8 +12,8 @@ class Layout extends Component {
   }
 
   render() {
-    const { orderBook, trades } = this.props;
-
+    const { orderBook, trades, ticker } = this.props;
+    console.log('ticker:', ticker);
     return (
       <div className="layout">
         <OrderBook orderBook={orderBook} />
@@ -27,11 +27,13 @@ Layout.propTypes = {
   subscribeToBfx: PropTypes.func.isRequired,
   orderBook: PropTypes.array.isRequired,
   trades: PropTypes.array.isRequired,
+  ticker: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => ({
   orderBook: state.orderBook,
   trades: state.trades,
+  ticker: state.ticker,
 });
 
 const mapDispatchToProps = dispatch => ({

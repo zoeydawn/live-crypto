@@ -49,6 +49,13 @@ function addTrade(data) {
   };
 }
 
+function gotTickerData(data) {
+  return {
+    type: 'GOT_TICKER_DATA',
+    payload: data,
+  };
+}
+
 export function subscribeToBfx() {
   return (dispatch) => {
     const socket = new WebSocket('wss://api.bitfinex.com/ws/2');
@@ -65,6 +72,7 @@ export function subscribeToBfx() {
         const dataArr = data[1];
         switch (dataArr.length) {
           case 10:
+            dispatch(gotTickerData(dataArr));
             break;
           case 50:
             dispatch(gotInitialOrders(dataArr));
