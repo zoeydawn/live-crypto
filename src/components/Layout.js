@@ -6,9 +6,18 @@ import { subscribeToBfx } from '../actions';
 import OrderBook from './OrderBook';
 import Trades from './Trades';
 import Ticker from './Ticker';
+import Disconnect from './Disconnect';
 
 class Layout extends Component {
   componentDidMount() {
+    this.props.subscribeToBfx();
+  }
+
+  disconnect() {
+
+  }
+
+  connect() {
     this.props.subscribeToBfx();
   }
 
@@ -18,7 +27,10 @@ class Layout extends Component {
     return (
       <div className="layout">
         <div className="left-container">
-          <Ticker ticker={ticker} />
+          <div className="top-container">
+            <Ticker ticker={ticker} />
+            <Disconnect isConnected />
+          </div>
           <OrderBook orderBook={orderBook} />
         </div>
         <Trades trades={trades} />

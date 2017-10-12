@@ -16,9 +16,20 @@
   color: #899094;
 }
 
-.ticker {
+.top-container {
   display: flex;
   height: 150px;
+}
+
+.ticker {
+  display: flex;
+  /*height: 150px;*/
+}
+
+.button-container {
+  text-align: center;
+  justify-content: center;
+  margin: auto;
 }
 
 .left-tick {
