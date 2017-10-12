@@ -22,10 +22,15 @@ require('./config/webpack')(app);
 
 app.use('/api', require('./routes/api'));
 
-app.use('/bundle.js', (request, response) => {
-  response.sendFile(path.join(__dirname, '../bundle.js'));
-});
+// app.use(webpackDevMiddleware(compiler, {
+//   noInfo: true,
+//   publicPath: '/'
+// }));
 
-app.use('*', (request, response) => {
+// app.use('/bundle.js', (request, response) => {
+//   response.sendFile(path.join(__dirname, '../build/bundle.js'));
+// });
+
+app.use('/', (request, response) => {
   response.sendFile(path.join(__dirname, '../public/index.html'));
 });
