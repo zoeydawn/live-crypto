@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react';
 import moment from 'moment';
+import { Icon } from 'semantic-ui-react';
 
 const Trades = ({ trades }) => (
   <div className="trades">
     <div className="row">
+      <div className="icon-column" />
       <div className="trade-cell">time</div>
       <div className="trade-cell">price</div>
       <div className="trade-cell right-floated">amount</div>
@@ -11,6 +13,9 @@ const Trades = ({ trades }) => (
     {
       trades.map((trade, i) => (
         <div className={`row ${trade[2] > 0 ? 'sell' : 'buy'}`} key={`trades-${i}`}>
+          <div className="icon-column">
+            <Icon name={trade[2] > 0 ? 'arrow down' : 'arrow up'} />
+          </div>
           <div className="trade-cell">{moment(trade[1]).format('h:mm:ss')}</div>
           <div className="trade-cell">{trade[3]}</div>
           <div className="trade-cell right-floated">{Math.abs(trade[2])}</div>
