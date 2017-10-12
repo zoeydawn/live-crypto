@@ -87,12 +87,20 @@
   font-size: 18px;
 }
 
-.sell {
+.buy {
   background-color: rgba(157, 194, 74, 0.05);
 }
 
-.buy {
+.sell {
   background-color: rgba(225, 86, 86, 0.05);
+}
+
+.buyIcon {
+  color: #77903e;
+}
+
+.sellIcon {
+  color: #83332f;
 }
 
 .row {
