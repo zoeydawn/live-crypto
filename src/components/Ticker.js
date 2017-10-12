@@ -8,9 +8,8 @@ const Ticker = ({ ticker }) => (
       <p>
         <span id="last-price">{ticker[6]}{' '}{' '}</span>
         <Icon name={ticker[6] > 0 ? 'arrow up' : 'arrow down'} />
-        {ticker[5] * 100}%
+        {(Math.round(ticker[5] * 1000) / 10)}%
       </p>
-      {/* <p>{ticker[6]} x{(Math.round(ticker[5] * 10) / 10) * 100}%</p> */}
       <p>vol: {ticker[7]}</p>
     </div>
     <div className="right-tick">
