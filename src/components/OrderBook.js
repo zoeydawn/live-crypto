@@ -8,7 +8,11 @@ export default class OrderBook extends Component {
     )).map((sortedArr, i) => {
       total += sortedArr[2];
       return (
-        <div className="row" key={`bids-${i}`}>
+        <div
+          className="row"
+          key={`bids-${i}`}
+          style={{ background: `linear-gradient(to left, #77903e ${total / 2}%, rgb(27, 38, 45) 0%)` }}
+        >
           <div className="cell">{sortedArr[1]}</div>
           <div className="cell center">{Math.round(sortedArr[2] * 10) / 10}</div>
           <div className="cell right-floated">{Math.round(total * 10) / 10}</div>
@@ -25,7 +29,11 @@ export default class OrderBook extends Component {
     )).map((sortedArr, i) => {
       total += sortedArr[2];
       return (
-        <div className="row" key={`asks-${i}`}>
+        <div
+          className="row"
+          key={`asks-${i}`}
+          style={{ background: `linear-gradient(to right, #83332f ${Math.abs(total) / 2}%, rgb(27, 38, 45) 0%)` }}
+        >
           <div className="cell">{sortedArr[0]}</div>
           <div className="cell center">{Math.round(Math.abs(total) * 10) / 10}</div>
           <div className="cell right-floated">{Math.round(Math.abs(sortedArr[2]) * 10) / 10}</div>
@@ -46,8 +54,7 @@ export default class OrderBook extends Component {
         bids.push(order);
       }
     });
-    // console.log('bids:', bids);
-    // console.log('asks:', asks);
+
     return (
       <div className="order-book">
         <div className="bids">
