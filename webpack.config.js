@@ -12,7 +12,7 @@ module.exports = {
   output: {
     path: path.resolve('./public'),
     publicPath: '/',
-    // filename: 'bundle.js',
+    filename: 'bundle.js',
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),

@@ -23,7 +23,7 @@ require('./config/webpack')(app);
 app.use('/api', require('./routes/api'));
 
 app.use('/bundle.js', (request, response) => {
-  response.sendFile(path.join(__dirname, '../public/bundle.js'));
+  response.sendFile(path.join(__dirname, '../bundle.js'));
 });
 
 app.use('*', (request, response) => {
