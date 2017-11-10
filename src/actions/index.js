@@ -13,6 +13,7 @@ const messages = {
     event: 'subscribe',
     channel: 'book',
     symbol: 'tBTCUSD',
+    freq: 'F1',
     prec: 'P1',
     len: 25,
   },
