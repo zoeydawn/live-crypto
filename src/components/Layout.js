@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { subscribeToBfx, unsubscribeToBfx, resubscribeToBfx } from '../actions';
+import { subscribeToBfx, unsubscribeToBfx } from '../actions';
 
 import OrderBook from './OrderBook';
 import Trades from './Trades';
@@ -22,7 +22,7 @@ class Layout extends Component {
 
   connect = () => {
     this.setState({ connected: true });
-    this.props.resubscribeToBfx();
+    this.props.subscribeToBfx();
   }
 
   render() {
@@ -49,7 +49,6 @@ class Layout extends Component {
 
 Layout.propTypes = {
   subscribeToBfx: PropTypes.func.isRequired,
-  resubscribeToBfx: PropTypes.func.isRequired,
   unsubscribeToBfx: PropTypes.func.isRequired,
   orderBook: PropTypes.array.isRequired,
   trades: PropTypes.array.isRequired,
@@ -65,9 +64,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   subscribeToBfx() {
     dispatch(subscribeToBfx());
-  },
-  resubscribeToBfx() {
-    dispatch(resubscribeToBfx());
   },
   unsubscribeToBfx() {
     dispatch(unsubscribeToBfx());
