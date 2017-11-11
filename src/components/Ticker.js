@@ -7,7 +7,7 @@ const Ticker = ({ ticker }) => (
       <h1>BTC/USD</h1>
       <p>
         <span id="last-price">{ticker[6]}{' '}{' '}</span>
-        <Icon name={ticker[6] > 0 ? 'arrow up' : 'arrow down'} />
+        <Icon name={ticker[5] > 0 ? 'arrow up' : 'arrow down'} />
         {(Math.round(ticker[5] * 1000) / 10)}%
       </p>
       <p>vol: {ticker[7]}</p>
