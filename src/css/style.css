@@ -15,6 +15,7 @@
   text-transform: uppercase;
   line-height: 1.3em;
   color: #899094;
+  position: relative;
 }
 
 .top-container {
@@ -120,4 +121,20 @@
   justify-content: space-between;
   width: 100%;
   color: #A4A9AC;
+}
+
+.footer {
+  position: absolute;
+  bottom: 17px;
+  right: 20px;
+  left: 11px;
+  /*width: 100%;*/
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.footer-link {
+  color: #899094;
 }

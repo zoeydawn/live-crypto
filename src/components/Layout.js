@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Icon } from 'semantic-ui-react'
 
 import { subscribeToBfx, unsubscribeToBfx } from '../actions';
 
@@ -42,6 +43,24 @@ class Layout extends Component {
           <OrderBook orderBook={orderBook} />
         </div>
         <Trades trades={trades} />
+        <div className="footer">
+          <a
+            className="footer-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="http://donovanmoore.tech/"
+          >
+            Created by Donovan Moore
+          </a>
+          <a
+            className="footer-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/donbobvanbirt/live-crypto"
+          >
+            <Icon name="github" size="large" />Github
+          </a>
+        </div>
       </div>
     );
   }
