@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 
 const Disconnect = ({ isConnected, disconnect, connect }) => (
   <div className="button-container">
     {
       isConnected ?
-        <Button onClick={disconnect}>disconnect</Button> :
-        <Button onClick={connect}>connect</Button>
+        <Button onClick={disconnect}><Icon name="stop" />stop</Button> :
+        <Button onClick={connect}><Icon name="refresh" />reload</Button>
     }
   </div>
 );
