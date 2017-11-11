@@ -15,7 +15,7 @@ const messages = {
     symbol: 'tBTCUSD',
     freq: 'F1',
     prec: 'P1',
-    len: 25,
+    len: 100,
   },
   trades: {
     event: 'subscribe',
@@ -82,7 +82,7 @@ function connect(dispatch) {
         case 10:
           dispatch(gotTickerData(dataArr));
           break;
-        case 50:
+        case 200:
           dispatch(gotInitialOrders(dataArr));
           break;
         case 3:
