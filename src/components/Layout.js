@@ -10,24 +10,19 @@ import Ticker from './Ticker';
 import Disconnect from './Disconnect';
 
 class Layout extends Component {
-  state = { connected: true };
-
   componentDidMount() {
-    this.props.subscribeToBfx();
-  }
-
-  disconnect = () => {
-    this.props.unsubscribeToBfx();
-    this.setState({ connected: false });
-  }
-
-  connect = () => {
-    this.setState({ connected: true });
-    this.props.subscribeToBfx();
+    this.props.subscribe();
   }
 
   render() {
-    const { orderBook, trades, ticker } = this.props;
+    const {
+      orderBook,
+      trades,
+      ticker,
+      connected,
+      subscribe,
+      unsubscribe,
+    } = this.props;
 
     return (
       <div className="layout">
@@ -35,9 +30,9 @@ class Layout extends Component {
           <div className="top-container">
             <Ticker ticker={ticker} />
             <Disconnect
-              isConnected={this.state.connected}
-              connect={this.connect}
-              disconnect={this.disconnect}
+              isConnected={connected}
+              connect={subscribe}
+              disconnect={unsubscribe}
             />
           </div>
           <OrderBook orderBook={orderBook} />
@@ -67,24 +62,26 @@ class Layout extends Component {
 }
 
 Layout.propTypes = {
-  subscribeToBfx: PropTypes.func.isRequired,
-  unsubscribeToBfx: PropTypes.func.isRequired,
+  subscribe: PropTypes.func.isRequired,
+  unsubscribe: PropTypes.func.isRequired,
   orderBook: PropTypes.array.isRequired,
   trades: PropTypes.array.isRequired,
   ticker: PropTypes.array.isRequired,
+  connected: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = state => ({
-  orderBook: state.orderBook,
-  trades: state.trades,
-  ticker: state.ticker,
+const mapStateToProps = ({ orderBook, trades, ticker, connected }) => ({
+  orderBook,
+  trades,
+  ticker,
+  connected,
 });
 
 const mapDispatchToProps = dispatch => ({
-  subscribeToBfx() {
+  subscribe() {
     dispatch(subscribeToBfx());
   },
-  unsubscribeToBfx() {
+  unsubscribe() {
     dispatch(unsubscribeToBfx());
   },
 });
