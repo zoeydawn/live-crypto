@@ -65,6 +65,12 @@ function disconnected() {
   };
 }
 
+function connected() {
+  return {
+    type: 'CONNECTED',
+  };
+}
+
 function connect(dispatch) {
   socket = new WebSocket('wss://api.bitfinex.com/ws/2');
   socket.onopen = () => {
@@ -72,6 +78,7 @@ function connect(dispatch) {
     socket.send(JSON.stringify(messages.ticker));
     socket.send(JSON.stringify(messages.book));
     socket.send(JSON.stringify(messages.trades));
+    dispatch(connected());
   };
 
   socket.onmessage = (msg) => {
@@ -99,9 +106,11 @@ function connect(dispatch) {
       }
     }
   };
+
   socket.onclose = () => {
-    console.info('[WS] disconnected from Bitfinex');
     socket = null;
+    dispatch(disconnected());
+    console.info('[WS] disconnected from Bitfinex');
   };
 
   socket.onerror = (msg) => {
