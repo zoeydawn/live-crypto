@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Loader } from 'semantic-ui-react';
 
 export default class OrderBook extends Component {
   renderBids(arr) {
@@ -47,6 +48,13 @@ export default class OrderBook extends Component {
     const { orderBook } = this.props;
     const bids = [];
     const asks = [];
+
+    if (!orderBook.length) {
+      return (
+        <Loader active inline="centered" />
+      );
+    }
+
     orderBook.forEach((order) => {
       if (order[2] < 0) {
         asks.push(order);
