@@ -1,16 +1,23 @@
 import React, { PropTypes } from 'react';
 import moment from 'moment';
-import { Icon } from 'semantic-ui-react';
+import { Icon, Loader } from 'semantic-ui-react';
 
-const Trades = ({ trades }) => (
-  <div className="trades">
-    <div className="row">
-      <div className="icon-column" />
-      <div className="trade-cell">time</div>
-      <div className="trade-cell">price</div>
-      <div className="trade-cell right-floated">amount</div>
-    </div>
-    {
+const Trades = ({ trades }) => {
+  if (!trades.length) {
+    return (
+      <Loader active inline="centered" />
+    );
+  }
+
+  return (
+    <div className="trades">
+      <div className="row">
+        <div className="icon-column" />
+        <div className="trade-cell">time</div>
+        <div className="trade-cell">price</div>
+        <div className="trade-cell right-floated">amount</div>
+      </div>
+      {
       trades.map((trade, i) => {
         const isBuy = trade[2] > 0;
         return (
@@ -25,8 +32,9 @@ const Trades = ({ trades }) => (
         );
       })
     }
-  </div>
-);
+    </div>
+  );
+};
 
 Trades.propTypes = {
   trades: PropTypes.array.isRequired,
